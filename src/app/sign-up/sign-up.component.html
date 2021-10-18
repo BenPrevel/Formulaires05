@@ -1,0 +1,41 @@
+<form (ngSubmit)="myForm.valid && onSubmit()" #myForm="ngForm">
+    <div>
+        <label for="firstName">First name :</label>
+        <input name="firstName" type="text" [(ngModel)]="model.firstName" #firstName="ngModel" minlength="3" maxlength="15" required>
+    </div>
+        <div *ngIf=" myForm.submitted && firstName.errors">
+        <span *ngIf="firstName.errors?.required">First Name required</span>
+        <span *ngIf="firstName.errors?.minlength">The min first name length must be 3 characters</span>
+        <span *ngIf="firstName.errors?.maxlength">The max first name length must be 15 characters</span>
+      </div>
+
+    <div>
+        <label for="lastName">Last name :</label>
+        <input name="lastName" type="text" [(ngModel)]="model.lastName" #lastName="ngModel" minlength="3" maxlength="15" required>
+    </div>
+    <div *ngIf="myForm.submitted && lastName.errors">
+        <span *ngIf="lastName.errors?.required">Last name required</span>
+        <span *ngIf="lastName.errors?.minlength">The min last name length must be 3 characters</span>
+        <span *ngIf="lastName.errors?.maxlength">The max last name length must be 15 characters</span>
+      </div>
+
+    <div>
+        <label for="email">Email :</label>
+        <input name="email" type="email" [(ngModel)]="model.email" #email="ngModel" required email>
+    </div>
+    <div *ngIf="myForm.submitted && email.errors">
+        <span *ngIf="email.errors?.required">Email required</span>
+        <span *ngIf="email.errors.email">Email unvalid</span>
+      </div>
+
+      <div>
+        <label for="password">Password :</label>
+        <input name="password" type="password" [(ngModel)]="model.password" #password="ngModel" required>
+    </div>
+    <div *ngIf="myForm.submitted && password.errors">
+        <span *ngIf="password.errors?.required">Password required</span>
+      </div>
+
+    <button class="validateBtn" type="submit">Send</button>
+    </form>
+
